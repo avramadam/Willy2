@@ -1,0 +1,584 @@
+// ----------- Notes 
+
+
+
+// --------- Start SCSS and VARIABLES
+@import 'reset';
+@import 'login';
+
+$gray: #EEEEEE;
+$darkred: #330000;
+$sand: #CDB99C;
+$lightblue: #3399CC;
+$text: #212121;
+* {
+	box-sizing: border-box;
+}
+body {
+    display: flex;
+	justify-content: center;
+    flex-flow: row wrap;
+    position: relative;
+}
+.option-container {
+    // display: none;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 20px 20px rgba(0, 0, 0, 0.418);
+    width: 30rem;
+    margin-top: auto;
+    top: 300px;
+    position: absolute;
+
+}	
+.inputBgOpaque:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px white inset;
+}
+#other {
+    font-size: .5em!important;
+    color: #212121;
+    position: relative;
+    left: 0;
+    top: 10%;
+}
+.cta {
+    background: $lightblue;
+    border-radius: 3px 3px 0px 0px;
+	color: white;
+	cursor: pointer;
+	display: block;
+	font-size: 2rem;
+	line-height: 1;
+	padding: 1.75rem 1rem;
+	text-align: center;
+	text-decoration: none;
+    width: 100%;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25);
+}
+.inputBgOpaque:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px white inset!important;
+}
+.searchForm {
+	background: $sand;
+	display: flex;
+	flex-flow: row;
+	padding: 1rem;
+    margin: 0;
+    position: relative;
+    top:1px;
+    min-width: 50px;
+    border-radius: 0px 0px 3px 3px;
+
+    .date {
+            border: none;
+            font-size: 1rem;
+            background-color: white;
+            width: auto;
+            height: 3.3rem;
+            border-radius: 0 2px 0 0!important;
+            outline: $lightblue;
+            -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+            margin-left: 10px;
+            box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0, 0, 0, 0.418); 
+        }
+	input {
+		padding: .75rem;
+        margin: 0 2px 0 -4px;
+		&[type="button"]{
+            background: linear-gradient(lighten($lightblue, 5%), lighten($lightblue, 0%));
+            box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0, 0, 0, 0.418);
+            cursor: pointer;
+            border-radius: 3px;
+			color: white;
+            border: none;
+            width: 50%;
+			font-size: 1rem;
+			margin: auto;
+			padding: 0 4rem;
+            transition: all .25s ease-in-out;
+            position: absolute;
+            right: 10px;
+            top: 80px;
+			&:hover{
+                background: linear-gradient(lighten($lightblue, 6%), lighten($lightblue, 1%))
+            }    
+        }        
+    } 
+    .eventLocation {
+            border: none;
+            width: 326px!important;
+			font-size: 1rem;
+            outline: $lightblue; 
+            border-radius: 10px;  
+            box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0, 0, 0, 0.418); 
+        }   
+    .foodLocation {
+            border: none;
+            width: 100%!important;
+			font-size: 1rem;
+            outline: $lightblue; 
+            border-radius: 10px;  
+            box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0, 0, 0, 0.418); 
+        }              
+}   
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0, 0, 0, 0.418); 
+}  
+.hidden{
+    display: none;
+}   
+#loader {
+    position: absolute;
+    left: 55%;
+    top: 50%;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    margin: -75px 0 0 -75px;
+    border: 17px solid #263238;
+    border-radius: 50%;
+    border-top: 17px solid #3498db;
+    width: 100px;
+    height: 100px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#map {
+            height: 700px;
+            width: 100%;
+            padding: 20px;
+			background:white;
+		}
+            
+header {
+    margin-top:100px;
+    position: relative;
+    h1 {
+        color: $lightblue;
+        font-size: 8em;
+        margin: auto;
+        width: 100%;
+        padding: 10px;
+        text-shadow: 4px 4px 16px black;
+    }
+    p {
+        cursor: pointer;
+        font-size: 1.2em;
+        text-shadow: 4px 4px 16px black;
+        color: $lightblue;
+        position: absolute;
+        bottom: -15px;
+        left: 100px
+    }
+    a{
+        cursor: pointer;
+        font-size: 1.2em;
+        text-shadow: 4px 4px 16px black;
+        color: $lightblue;
+        position: absolute;
+        top: 0px;
+        right: 20px;
+    }
+}
+
+.fullscreen-bg {   
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+    #background-vid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    background: black;
+    opacity: 0.5;
+    }
+}
+#aboutModal {
+    position: fixed;
+    top:25%;
+    left:0;
+        .modal-content {
+            .modal-header {
+                background-color: $lightblue;
+                p {
+                    color: black;
+                    font-size: 2em;
+                    margin: auto;
+                    width: 100%;
+                    padding: 10px;
+                    text-shadow: 2px 2px 8px $gray;
+                }
+            }
+            .modal-body {
+                background-color: $sand;
+                #cr {
+                    font-size: 1em;
+                }
+            }
+        }
+}
+#eventModal {
+        .modal-content {
+            .modal-header {
+                background-color: $lightblue;
+                p {
+                    color: black;
+                    font-size: 2em;
+                    margin: auto;
+                    width: 100%;
+                    padding: 10px;
+                    text-shadow: 2px 2px 8px $gray;
+                }
+            }
+            .modal-body {
+                background-color: $sand;
+                #cr {
+                    font-size: .5em;
+                }
+            }
+        }
+}
+
+#mapsModal {
+    position: fixed;
+    top:0%;
+    left:0%;
+        .modal-content {
+            .modal-header {
+                background-color: $lightblue;
+                p {
+                    color: black;
+                    font-size: 2em;
+                    margin: auto;
+                    width: 100%;
+                    padding: 10px;
+                    text-shadow: 2px 2px 8px $gray;
+                }
+            }
+            .modal-body {
+                background-color: $sand;
+                #cr {
+                    font-size: 1em;
+                }
+            }
+        }
+}
+*, *:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.toggle {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  top: 10px;
+  right: 150px;
+  width: 150px;
+  height: 50px;
+  color: white;
+  outline: 0;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 2px solid #546E7A;
+  background-color: #263238;
+  transition: all 500ms;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0, 0, 0, 0.418); 
+  &:active {
+    background-color: darken(#263238, 5%);
+  }
+  &:hover:not(.toggle--moving) {
+    &:after {
+      background-color: #455A64;
+    }
+  }
+  &:after {
+    display: block;
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    line-height: 35px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10px;
+    color: white;
+    background-color: #37474F;
+    border: 2px solid;
+    transition: all 500ms; 
+  }
+}
+.toggle--food {
+  &:after {
+    content: 'Food/Bars';
+    border-radius: 5px;
+    color: $lightblue;
+  }
+}
+.toggle--events {
+  &:after {
+    content: 'Events';
+    border-radius:5px;
+    transform: translate(100%, 0);
+    color:$sand;
+  }
+}
+.toggle--moving {
+  background-color: darken(#263238, 5%);
+  &:after {
+    color: transparent;
+    border-color: darken(#546E7A, 8%);
+    background-color: darken(#37474F, 10%);
+    transition: color 0s,
+                transform 500ms,
+                border-radius 500ms,          
+                background-color 500ms;
+  }
+}
+.eventTitle {
+    font-size: 1em;
+    margin: auto;
+    width: 100%;
+}
+.views {
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0, 0, 0, 0.418); 
+    margin: 10px!important;
+    padding: 5px;
+}
+.error {
+   text-align: center;
+}
+.error2 {
+    color: $sand;
+    padding: 20px;
+}
+.errorBtn {
+    position: relative;
+    right: 10px !important;
+}
+
+// ----- PHONE STYLES - Smaller 
+@media only screen and (min-width: 200px) {
+    header {
+        margin-top:190px;
+        h1 {
+            font-size: 3.5em;
+        }
+        p {
+        bottom: -30px;
+        left: 20px
+        }
+    }
+    .fullscreen-bg {
+        background: url('../../images/event.jpg') center center / cover no-repeat;
+        #background-vid {
+            display: none;
+        }
+    }
+    input {
+        padding: 1rem !important;
+        margin:0 !important;
+        flex: 100%;
+    
+    }
+    .option-container {
+    // display: none;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 20px 20px rgba(0, 0, 0, 0.418);
+    width: 21rem;
+    margin-top: auto;
+    top: 300px;
+    position: absolute;
+}	
+    .searchForm {
+        .eventLocation {
+            width: 190px!important;
+        }
+    }
+    .toggle {
+        width: 150px;
+        right: 90px;
+    }
+}
+.address {
+    color: $lightblue;
+    font-size: 1em;
+    padding: 2px;
+    cursor: pointer;
+}
+
+// ----- PHONE STYLES - SM 
+@media only screen and (min-width: 599px) {
+
+    header {
+        margin-top:180px;
+        h1 {
+            font-size: 5em;
+        }
+        p {
+        bottom: -15px;
+        left: 60px
+        }
+    }
+    .fullscreen-bg {
+        background: url('../../images/event.jpg') center center / cover no-repeat;
+        #background-vid {
+            display: none;
+        }
+    }
+    .cta {
+        line-height: 1.4;
+        padding: 1.25rem 1rem;
+    }
+    input {
+        padding: 1rem !important;
+        margin:0 !important;
+        flex: 100%;
+       
+    }
+    .option-container {
+    // display: none;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 20px 20px rgba(0, 0, 0, 0.418);
+    width: 30rem;
+    margin-top: auto;
+    top: 300px;
+    position: absolute;
+    }	
+    .searchForm {
+        .eventLocation {
+            width: 330px!important;
+        }
+    }
+        
+    .toggle {
+        width: 150px;
+        right: 150px;
+    }
+}
+// ----- TABLET STYLES - MD 
+@media only screen and (min-width: 600px) {
+    header {
+        margin-top:200px;
+        h1 {
+            font-size: 6em;
+        }
+        p {
+        bottom: -15px;
+        left: 60px
+        }
+    }
+    .fullscreen-bg {
+        #background-vid {
+            display: block;
+            height: 200%;
+            top: -50%;
+            width: 200%;
+            left: -50%;
+        }
+    }
+            .option-container {
+    // display: none;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 20px 20px rgba(0, 0, 0, 0.418);
+    width: 30rem;
+    margin-top: auto;
+    top: 350px;
+    position: absolute;
+    }	
+}
+
+// ----- LAPTOP STYLES - LG 
+@media only screen and (min-width: 900px) { 
+    header {
+        margin-top:150px;    
+            h1 {
+                color: $lightblue;
+                font-size: 8em;
+                margin: auto;
+                width: 100%;
+                padding: 10px;
+                text-shadow: 2px 2px 8px black;
+        }
+        p {
+        bottom: -15px;
+        left: 100px
+        }
+    }
+    .option-container {
+    // display: none;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 20px 20px rgba(0, 0, 0, 0.418);
+    width: 30rem;
+    margin-top: auto;
+    top: 350px;
+    position: absolute;
+    }	
+}  
+
+// ----- LARGE DESKTOP STYLES - XL 
+@media only screen and (min-width: 1200px) { 
+        header {
+        margin-top:150px;    
+            h1 {
+                color: $lightblue;
+                font-size: 8em;
+                margin: auto;
+                width: 100%;
+                padding: 10px;
+                text-shadow: 2px 2px 8px black;
+        }
+    }
+            .option-container {
+    // display: none;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 20px 20px rgba(0, 0, 0, 0.418);
+    width: 30rem;
+    margin-top: auto;
+    top: 350px;
+    position: absolute;
+    }	
+}  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
